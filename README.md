@@ -4,6 +4,7 @@ player cash modifier for c&c generals zero hour -- singleplayer games only
 enter a game and u can begin modifying the cash values.
 tested for c&c generals zero hour versions on ea, steam, and modded via genlauncher.
 if u have any issues lmk ^_^meow 
+note: u may have to disable/add an exception for the executable in ur antivirus due to the modification of game memory
 
 build instructions:
 open the .sln in visual studio

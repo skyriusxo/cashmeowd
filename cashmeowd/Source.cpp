@@ -122,18 +122,15 @@ void memoryTamper(DWORD processId, uintptr_t baseAddr, int cash, uintptr_t ptr1)
     uintptr_t p1 = 0;
     ReadProcessMemory(hProcess, (LPCVOID)(baseAddr + ptr1), &p1, sizeof(p1), NULL);
 
-    uintptr_t playerPtr = 0;
-    ReadProcessMemory(hProcess, (LPCVOID)(p1 + 0x0C), &playerPtr, sizeof(playerPtr), NULL);
+    uintptr_t p2 = 0;
+    ReadProcessMemory(hProcess, (LPCVOID)(p1 + 0x0C), &p2, sizeof(p2), NULL);
 
-    while (playerPtr == 0) {
+    while (p2 == 0) {
         Sleep(100);
-        ReadProcessMemory(hProcess, (LPCVOID)(p1 + 0x0C), &playerPtr, sizeof(playerPtr), NULL);
+        ReadProcessMemory(hProcess, (LPCVOID)(p1 + 0x0C), &p2, sizeof(p2), NULL);
     }
 
-    uintptr_t cashAddress = playerPtr + 0x38;
-
-    WriteProcessMemory(hProcess, (LPVOID)cashAddress, &cash, sizeof(cash), NULL);
-
+    uintptr_t cashAddress = p2 + 0x38;
     WriteProcessMemory(hProcess, (LPVOID)cashAddress, &cash, sizeof(cash), NULL);
     cout << "cash set to " << cash << " ^_^ " << endl;
     Sleep(1000);
